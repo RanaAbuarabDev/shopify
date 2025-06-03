@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Admin;
+use App\Models\Customer;
+use App\Models\Marchant;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+Relation::enforceMorphMap([
+    'admin'=> Admin::class,
+    'customer'=> Customer::class,
+    'marchant'=> Marchant::class
+]);
     }
 }
