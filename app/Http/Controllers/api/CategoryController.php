@@ -19,12 +19,9 @@ class CategoryController extends Controller
     }catch (\Exception $exception){
         return response()->json(['error'=>$exception->getMessage()]);}
     }
-    public function show($id){
+    public function show(Category $category){
         try{
-        $category=Category::where('id',$id)->first();
-        if(!$category){
-            return response()->json(['message'=>'category not found'],404);
-        }
+
         return response()->json($category);
 
     }catch (\Exception $exception){
