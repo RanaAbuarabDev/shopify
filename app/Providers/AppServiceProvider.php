@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Admin;
 use App\Models\Customer;
-use App\Models\Marchant;
+use App\Models\Merchant;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 Relation::enforceMorphMap([
     'admin'=> Admin::class,
     'customer'=> Customer::class,
-    'marchant'=> Marchant::class
+    'marchant'=> Merchant::class
 ]);
     }
 }

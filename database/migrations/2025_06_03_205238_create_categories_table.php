@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
 
 
-                $table->unsignedBigInteger('marchant_id')->nullable();
-                $table->foreign('marchant_id')->references('id')->on('marchants')->onDelete('cascade');
+                $table->unsignedBigInteger('merchant_id')->nullable();
+                $table->foreign('merchant_id')->references('id')->on('merchants')->onDelete('cascade');
 
 
             $table->timestamps();
