@@ -8,27 +8,30 @@ use App\Http\Requests\Merchant\RegisterRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
+use App\Services\AuthService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
 {
+
+    public function __construct(public AuthService $authService)
+    {
+        
+    }
+
     public function login(LoginRequest $request){
         $credentials = $request->only('email', 'password');
-        if(Auth::attempt($credentials)){
-            /** @var User $user */
-            $user =Auth::user();
-            if($user->user_type != (new Customer)->getMorphClass()){
-                return ResponseFormatter::error('unauthorized',401);
-            }
-            $token = $user->createToken('authToken')->plainTextToken;
-            return ResponseFormatter::success('login success',[
+        [$success, $token, $token_type, $user] = $this->authService->login($credentials['email'], $credentials['password'], (new Customer())->getMorphClass());
+        if($success){
+            return ResponseFormatter::success('login success', [
                 'token' => $token,
-                'token_type' => 'Bearer',
+                'token_type' => $token_type,
                 'user' => $user,
             ]);
         }
+        return ResponseFormatter::error('unauthorized',401);
     }
     public function Register(RegisterRequest $request)
     {

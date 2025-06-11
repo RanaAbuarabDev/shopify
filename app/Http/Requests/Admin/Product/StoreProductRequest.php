@@ -31,7 +31,7 @@ class StoreProductRequest extends FormRequest
                     return $query->where('category_id', $this->category_id);
                 }),
             ],
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             //

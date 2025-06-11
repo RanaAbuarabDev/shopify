@@ -33,7 +33,7 @@ class ProductController extends Controller
             'name' => $data['name'],
             'price' => $data['price'],
             'category_id' => $data['category_id'],
-            'description' => $data['description'],
+            'description' => $data['description'] ?? null,
         ]);
         return ResponseFormatter::success("Product created successfully",$product);}
         catch (\Exception $exception){

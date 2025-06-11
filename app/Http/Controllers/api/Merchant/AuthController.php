@@ -11,9 +11,15 @@ use App\Http\Requests\Merchant\RegisterRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\ResponseFormatter;
+use App\Services\AuthService;
 
 class AuthController extends Controller
 {
+
+    public function __construct(public AuthService $authService)
+    {
+        
+    }
     public function register(RegisterRequest $request)
     {
         $data = $request->validated();
@@ -46,19 +52,15 @@ class AuthController extends Controller
     }
     public function login(LoginRequest $request){
         $credentials = $request->only('email', 'password');
-       if(Auth::attempt($credentials)){
-           /** @var User $user */
-           $user=Auth::user();
-           if($user->user_type!=(new Merchant)->getMorphClass()){
-               return ResponseFormatter::error('unauthorized',401);}
-               $token = $user->createToken('authToken')->plainTextToken;
-               return ResponseFormatter::success('Login successful', [
-                   'token' => $token,
-                   'token_type' => 'Bearer',
-                   'user' => $user
-               ]);
-           }
-         return ResponseFormatter::error('invalid credentials', 401);
-       }
+
+        [$success, $token, $token_type, $user] = $this->authService->login($credentials['email'], $credentials['password'], (new Merchant())->getMorphClass());
+        if($success){
+            return ResponseFormatter::success('login success', [
+                'token' => $token,
+                'token_type' => $token_type,
+                'user' => $user,
+            ]);
+            return ResponseFormatter::error('unauthorized',401);} 
+        }
 
 }

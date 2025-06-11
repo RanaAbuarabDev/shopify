@@ -22,5 +22,19 @@ Route::prefix('admin')->middleware('user-type:admin')->group(function () {
         Route::put('/update/{Product}', 'update');
         Route::delete('/delete/{Product}', 'destroy');
     });
+
+
+    Route::prefix('customer')->controller(CustomerController::class)->group(function () {
+        // Route::post('/add', 'store');
+        // Route::get('/', 'index');
+        // Route::get('/{Customer}', 'show');
+        // Route::put('/update/{Customer}', 'update');
+        // Route::delete('/delete/{Customer}', 'destroy');
+        Route::post('/add-contact/{Customer}', 'addContact');
+        // Route::put('/update-contact/{Customer}', 'updateContact');
+        // Route::delete('/delete-contact/{Customer}', 'deleteContact');
+        // Route::get('/get-contact/{Customer}', 'getContact');
+        // Route::get('/get-contacts/{Customer}', 'getContacts');
+    });
 });
 

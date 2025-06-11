@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Helpers\ResponseFormatter;
 use App\Http\Requests\Admin\StoreCategoryRequest;
 use App\Http\Requests\Admin\UpdateCategoryRequest;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -36,7 +37,8 @@ class CategoryController extends Controller
         try {
             $category = Category::create([
                 'name' => $request->name,
-                'description'=> $request->description
+                'description'=> $request->description,
+                'slug' => Str::slug($request->name)
             ]);
             return ResponseFormatter::success('Category created successfully', $category);
         } catch (\Exception $exception) {
@@ -49,9 +51,8 @@ class CategoryController extends Controller
         $data = $request->validated();
 
         try {
-
+            $data['slug'] = Str::slug($request->name);
             $category->update($data);
-
             return ResponseFormatter::success('Category updated successfully', $category);
 
         } catch (\Exception $exception) {

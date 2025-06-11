@@ -5,8 +5,8 @@ Route::prefix('admin')->group(function () {
     require __DIR__.'/admin.php';
 });
 
-Route::prefix('marchant')->group(function () {
-    require __DIR__.'/marchant.php';
+Route::prefix('merchant')->group(function () {
+    require __DIR__.'/merchant.php';
 });
 
 Route::prefix('customer')->group(function () {
