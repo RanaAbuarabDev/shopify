@@ -16,7 +16,6 @@ class CheckRoleMiddleware
      */
     public function handle(Request $request, Closure $next,$usertype): Response
     {
-
         if(auth()->user()&&auth()->user()->user_type==$usertype)
         {
         return $next($request);
