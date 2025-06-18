@@ -18,7 +18,10 @@ class FileController extends Controller {
         return response()->json(
             ResponseFormatter::success(
                 'File uploaded successfully',
-                Storage::disk($disk)->url($filePath)
+                [
+                    'path' => $filePath,
+                    'url' => Storage::disk($disk)->url($filePath),
+                ]
             )
         );
 

@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Enums\ImagePositionEnum;
+use App\Rules\CheckIsMailRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -24,6 +27,11 @@ class StoreCategoryRequest extends FormRequest
         return [
             'name' => 'required|string|unique:categories,name',
             'description' => 'nullable|string',
+
+            'images' => ['array', new CheckIsMailRule()],
+            'images.*.path' => 'string',
+            'images.*.position' => ['string', Rule::enum(ImagePositionEnum::class)],
+            'images.*.is_main' => ['boolean'],
         ];
     }
 }
