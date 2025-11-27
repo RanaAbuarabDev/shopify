@@ -46,6 +46,7 @@ return [
             'throw' => false,
             'report' => false,
         ],
+<<<<<<< HEAD
         'private' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
@@ -53,6 +54,8 @@ return [
             'throw' => false,
             'report' => false,
         ],
+=======
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 
         's3' => [
             'driver' => 's3',

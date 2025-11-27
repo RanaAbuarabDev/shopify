@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+<<<<<<< HEAD
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Customer;
@@ -9,6 +10,8 @@ use App\Models\Merchant;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
+=======
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+<<<<<<< HEAD
         Relation::enforceMorphMap([
             'admin'=> Admin::class,
             'customer'=> Customer::class,
@@ -34,5 +38,8 @@ class AppServiceProvider extends ServiceProvider
             'category'=> Category::class,
             'product'=> Product::class,
         ]);
+=======
+        //
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
     }
 }

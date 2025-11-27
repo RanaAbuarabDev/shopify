@@ -6,12 +6,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+<<<<<<< HEAD
 use Laravel\Sanctum\HasApiTokens;
+=======
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
+<<<<<<< HEAD
     use HasFactory, Notifiable,HasApiTokens;
+=======
+    use HasFactory, Notifiable;
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 
     /**
      * The attributes that are mass assignable.
@@ -46,10 +53,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+<<<<<<< HEAD
     public function user()
     {
         return $this->morphTo();
     }
 
 
+=======
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 }

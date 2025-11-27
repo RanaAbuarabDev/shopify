@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+<<<<<<< HEAD
 use App\Models\Category;
 use App\Models\Product;
+=======
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+<<<<<<< HEAD
       /*  User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -31,5 +35,11 @@ class DatabaseSeeder extends Seeder
 
         Product::factory(1000)->create();
 
+=======
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+>>>>>>> 5270ef75c682166a1e9125b37f7f4c1d16bafa49
     }
 }
